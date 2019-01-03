@@ -3,22 +3,49 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+# Little Shop Extensions
 
-* Ruby version
+## More Merchant stats, Part 1 (counts as 1 extension point)
 
-* System dependencies
+Build a Merchant leaderboard available on "/merchants" that all users can see:
 
-* Configuration
+- Top 10 Merchants who sold the most items this month
+- Top 10 Merchants who sold the most items last month
+- Top 10 Merchants who fulfilled non-cancelled orders this month
+- Top 10 Merchants who fulfilled non-cancelled orders last month
 
-* Database creation
+When logged in as a user:
 
-* Database initialization
+- Also see top 5 merchants who have fulfilled items the fastest to my state
+- Also see top 5 merchants who have fulfilled items the fastest to my city
 
-* How to run the test suite
+#### Mod 2 Learning Goals reflected:
 
-* Services (job queues, cache servers, search engines, etc.)
+- Advanced ActiveRecord
+- Software Testing
+- HTML/CSS layout and styling
 
-* Deployment instructions
+---
 
-* ...
+## Users can rate items (counts as 1 extension point)
+
+Users will have the ability to leave ratings for items they have successfully purchased.
+
+Users cannot rate items from orders which have been canceled by the user or an admin.
+
+Users can write one rating per item per order. If the user orders an item (in any quantity) they can leave one rating. If they order the item again in a different order, the user can leave another rating.
+
+Build all CRUD functionality for users to add a rating through their order show page.
+
+Users can disable any rating they created. Admins can enable or disable any rating.
+
+Disabled ratings should not factor into total counts of ratings, nor averages of ratings.
+
+Ratings will include a title, a description, and a rating from 1 to 5.
+
+#### Mod 2 Learning Goals reflected:
+
+- Database relationships
+- Rails development (including routing)
+- Software Testing
+- HTML/CSS styling and layout
