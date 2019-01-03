@@ -5,7 +5,7 @@ application up and running.
 
 # Little Shop Extensions
 
-## More Merchant stats, Part 1 (counts as 1 extension point)
+## Merchant Stats, Part 1
 
 Build a Merchant leaderboard available on "/merchants" that all users can see:
 
@@ -27,7 +27,7 @@ When logged in as a user:
 
 ---
 
-## Users can rate items (counts as 1 extension point)
+## Users can Rate Items
 
 Users will have the ability to leave ratings for items they have successfully purchased.
 
