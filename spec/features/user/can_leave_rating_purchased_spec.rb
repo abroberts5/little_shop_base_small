@@ -19,7 +19,7 @@ describe 'Profile Orders page' do
     it 'can see the order and be able to rate product' do
       visit profile_order_path(@order)
 
-      expect(page).to have_content("please leave rating:")
+      expect(page).to have_content("please leave a review:")
     end
   end
 end
