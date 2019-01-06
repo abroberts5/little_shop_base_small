@@ -1,4 +1,3 @@
-  <br>
 <%= tag.div id: "order-#{@order.id}" do %>
   <p>Order ID <%= @order.id %></p>
   <p>Created: <%= @order.created_at %></p>
@@ -7,31 +6,15 @@
   <p>Item Count: <%= @order.total_item_count %></p>
   <p>Total Cost: <%= number_to_currency(@order.total_cost) %></p>
   <% if @order.status == 'pending' %>
-  <p><%= button_to 'Cancel Order', profile_order_path(@order), method: :delete %></p>
+    <p><%= button_to 'Cancel Order', profile_order_path(@order), method: :delete %></p>
   <% end %>
 
-  <br>
-
-<p>----------------------------------------------------------------</p>
-<div style="display: grid;">
   <% @order.order_items.each do |oitem| %>
     <%= tag.div id: "oitem-#{oitem.id}" do %>
       <%= render partial: "/profile/orders/order_item", locals: {oitem: oitem, img_width: 150} %>
     <% end %>
-    <% if oitem.order.status == 'pending' || 'completed' %>
-      <p>please leave a review:</p>
-      <form action="/profile/orders/#{@order.id}" method="get"
-      oninput="x.value=parseInt(number.value)">
-        <p>1 <input type="range" id="number" name="number" min="1" max="5"> 5
-        = <output name="x" for="number"></output></p>
-        <input type="text" name="title" value="Title">
-        <br>
-        <textarea name="message" rows="6" cols="50">Description</textarea>
-        <br>
-        <input type="submit" value="Submit Review">
-      </form>
+    <% if oitem.fulfilled == true %>
+      <p><%= link_to "click to leave review", new_profile_order_review_path(@order.id), method: :get %></p>
     <% end %>
-    <br><br><br>
   <% end %>
-</div>
 <% end %>

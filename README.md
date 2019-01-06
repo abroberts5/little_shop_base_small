@@ -43,6 +43,22 @@ Disabled ratings should not factor into total counts of ratings, nor averages of
 
 Ratings will include a title, a description, and a rating from 1 to 5.
 
+#### General Goal
+
+Users will have the ability to leave ratings for items they have successfully purchased.
+
+#### Completion Criteria
+
+1. Reviews can only be left for items in "completed" orders.
+1. Users can write one review for each ordered item.
+1. If a user orders the same item in a different order, they get to leave an additional review. (if they order the same item in 4 different orders, they get to leave 4 ratings)
+1. An average review rating should be shown on both the Item Catalog page as well as the Item Show page.
+
+#### Implementation Guidelines
+
+1. Build all CRUD functionality for users to add a rating through their order show page. The user should be able to navigate to a reviews index page from their profile page, and from there they can add, edit, show, or delete any review.
+1. Ratings will include a title, a description, and an integer rating from 1 to 5.
+
 #### Mod 2 Learning Goals reflected:
 
 - Database relationships
