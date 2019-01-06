@@ -2,37 +2,61 @@
 
 These instructions will get you a copy of the project extensions up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-Prerequisites:
-Install Ruby (Version 2.4.5)
-Install Rails (Version 5.1)
-Installing:
+#### Prerequisites:
+* Install Ruby (Version 2.4.5)
+* Install Rails (Version 5.1)
+
+#### Installing:
 To run this application locally, clone this repo and follow the steps below:
 
-Install gems:
+1) Install gems:
+```
 $ bundle
-Create, migrate, & seed database:
-$ rake db:{create,migrate,seed}
-Start your rails server:
-$ rails s
-Open browser and navigate to:
-localhost:3000
-Running the RSpec Test Suite
-Little Shop has a full RSpec suite of feature and model tests for every piece of functionality in the app.
+```
 
-Running the Full Test Suite:
+
+2) Create, migrate, & seed database:
+```
+$ rake db:{create,migrate,seed}
+```
+
+
+3) Start your rails server:
+```
+$ rails s
+```
+
+
+4) Open browser and navigate to:
+```
+localhost:3000
+```
+
+## Running the RSpec Test Suite
+
+Little Shop extension has a full RSpec suite of feature and model tests for every piece of functionality in the app.
+
+#### Running the Full Test Suite:
 From the root of directory, type the below command to run the full test suite:
 
 $ rspec
 Running only Feature Tests:
 Type this command from the root of thisp directory.
 
+```
 $ rspec ./spec/features
-Running only Model Tests:
-Type this command from the root of the directory.
+```
 
+#### Running only Model Tests:
+
+Type this command from the root of the directory.
+```
 $ rspec ./spec/models
+```
 
 # Little Shop Extensions
+
+### extension_1...
 
 ## Merchant Stats, Part 1
 
@@ -55,6 +79,8 @@ When logged in as a user:
 - HTML/CSS layout and styling
 
 ---
+
+### extension_2...
 
 ## Users can Rate Items
 
@@ -79,14 +105,14 @@ Users will have the ability to leave ratings for items they have successfully pu
 #### Completion Criteria
 
 1. Reviews can only be left for items in "completed" orders.
-1. Users can write one review for each ordered item.
-1. If a user orders the same item in a different order, they get to leave an additional review. (if they order the same item in 4 different orders, they get to leave 4 ratings)
-1. An average review rating should be shown on both the Item Catalog page as well as the Item Show page.
+2. Users can write one review for each ordered item.
+3. If a user orders the same item in a different order, they get to leave an additional review. (if they order the same item in 4 different orders, they get to leave 4 ratings)
+4. An average review rating should be shown on both the Item Catalog page as well as the Item Show page.
 
 #### Implementation Guidelines
 
 1. Build all CRUD functionality for users to add a rating through their order show page. The user should be able to navigate to a reviews index page from their profile page, and from there they can add, edit, show, or delete any review.
-1. Ratings will include a title, a description, and an integer rating from 1 to 5.
+2. Ratings will include a title, a description, and an integer rating from 1 to 5.
 
 #### Mod 2 Learning Goals reflected:
 
