@@ -67,5 +67,17 @@ RSpec.describe Item, type: :model do
       expect(item_1.ever_ordered?).to eq(true)
       expect(item_2.ever_ordered?).to eq(false)
     end
+
+    it '.average_rating' do
+      user = create(:user)
+      user_2 = create(:user)
+      item_1 = create(:item)
+      order = create(:completed_order)
+      create(:fulfilled_order_item, order: order, item: item_1, created_at: 4.days.ago, updated_at: 1.days.ago)
+      item_1.reviews.create(user_id: user.id, title: "Silly Wabbit", description: "tricks are for kids", rating: 4, created_at: 1.day.ago, updated_at: 1.day.ago)
+      item_1.reviews.create(user_id: user_2.id, title: "Silly Wabbit", description: "tricks are for kids", rating: 4, created_at: 1.day.ago, updated_at: 1.day.ago)
+
+      expect(item_1.average_rating).to eq(4)
+    end
   end
 end

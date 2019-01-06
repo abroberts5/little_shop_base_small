@@ -42,4 +42,8 @@ class Item < ApplicationRecord
   def ever_ordered?
     OrderItem.find_by_item_id(self.id) !=  nil
   end
+
+  def average_rating
+    reviews.average(:rating).to_f
+  end
 end
