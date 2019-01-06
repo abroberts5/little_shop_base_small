@@ -10,10 +10,17 @@ Merchant is out of stock, sorry
 <% end %>
 
 <% @item.reviews.each do |review| %>
-<%= review.title %>
-<%= review.description %>
-<%= review.rating %>
+<% if review.status == true %>
+  <%= review.title %>
+  <%= review.description %>
+  <%= review.rating %>
+    <% if review.user == current_user || current_admin? %>
+      <%= button_to "disable review", profile_disable_path(review), method: :patch%>
+    <% end %>
+  <% end %>
 <% end %>
+
+<p>Average Rating: <%= @item.average_rating %></p>
 
 <p>Average time to fulfill: <%= fulfillment_time(@item.avg_fulfillment_time) %>
 <% end %>
