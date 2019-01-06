@@ -27,11 +27,13 @@ Rails.application.routes.draw do
     patch '/items/:id/enable', to: 'items#enable', as: 'enable_item'
     patch '/items/:id/disable', to: 'items#disable', as: 'disable_item'
   end
-  get '/profile', to: 'profile#index', as: 'profile'
 
+  get '/profile', to: 'profile#index', as: 'profile'
   get '/profile/edit', to: 'users#edit'
   namespace :profile do
-    resources :orders, only: [:index, :create, :show, :destroy]
+    resources :orders, only: [:index, :create, :show, :destroy] do
+      resources :reviews, only: [:new, :create]
+    end
   end
 
   post '/admin/users/:merchant_id/items', to: 'dashboard/items#create', as: 'admin_user_items'
