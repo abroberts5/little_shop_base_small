@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create, :show, :destroy] do
       resources :reviews, only: [:new, :create]
     end
+    patch 'items/reviews/disable', to: 'reviews#disable', as: 'disable'
+    patch 'items/reviews/enable', to: 'reviews#enable', as: 'enable'
   end
 
   post '/admin/users/:merchant_id/items', to: 'dashboard/items#create', as: 'admin_user_items'
