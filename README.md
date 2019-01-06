@@ -1,7 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+These instructions will get you a copy of the project extensions up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+Prerequisites:
+Install Ruby (Version 2.4.5)
+Install Rails (Version 5.1)
+Installing:
+To run this application locally, clone this repo and follow the steps below:
+
+Install gems:
+$ bundle
+Create, migrate, & seed database:
+$ rake db:{create,migrate,seed}
+Start your rails server:
+$ rails s
+Open browser and navigate to:
+localhost:3000
+Running the RSpec Test Suite
+Little Shop has a full RSpec suite of feature and model tests for every piece of functionality in the app.
+
+Running the Full Test Suite:
+From the root of directory, type the below command to run the full test suite:
+
+$ rspec
+Running only Feature Tests:
+Type this command from the root of thisp directory.
+
+$ rspec ./spec/features
+Running only Model Tests:
+Type this command from the root of the directory.
+
+$ rspec ./spec/models
 
 # Little Shop Extensions
 
