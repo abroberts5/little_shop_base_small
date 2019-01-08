@@ -37,6 +37,24 @@ class User < ApplicationRecord
     merchant_fulfillment_times(:desc, 3)
   end
 
+  def self.top_10_merch_this_month(count)
+    User.joins(items: :order_items)
+      .select('users.*, sum(order_items.quantity) as top_sold')
+      .where("extract(month FROM order_items.updated_at) =? AND order_items.fulfilled = ? ", Time.now.month, true)
+      .group(:id)
+      .order('top_sold desc')
+      .limit(count)
+  end
+
+  def self.top_10_merch_last_month(count)
+    User.joins(items: :order_items)
+      .select('users.*, sum(order_items.quantity) as top_sold')
+      .where("extract(month FROM order_items.updated_at) =? AND order_items.fulfilled = ? ", Time.now.last_month.month, true)
+      .group(:id)
+      .order('top_sold desc')
+      .limit(count)
+  end
+
   def my_pending_orders
     Order.joins(order_items: :item)
       .where("items.merchant_id=? AND orders.status=? AND order_items.fulfilled=?", self.id, 0, false)
