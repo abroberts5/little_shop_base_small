@@ -101,4 +101,26 @@
     <% end unless @top_3_quantity_orders.nil? %>
     </ol>
   <% end %>
+
+  <%= tag.div id: "top-10-merchant-items-this-month" do %>
+    <h4>Top 10 Merchant Items This Month</h4>
+    <ol>
+    <% @top_10_merch_this_month.each do |merch| %>
+    <%= tag.li class: 'merchant' do %>
+    <%= merch.name %>
+    <% end %>
+    <% end unless @top_10_merch_this_month.nil? %>
+    </ol>
+  <% end %>
+
+  <%= tag.div id: "top-10-merchant-items-last-month" do %>
+    <h4>Top 10 Merchant Items Last Month</h4>
+    <ol>
+    <% @top_10_merch_last_month.each do |merch| %>
+    <%= tag.li class: 'merchant' do %>
+    <%= merch.name %>
+    <% end %>
+    <% end unless @top_10_merch_last_month.nil? %>
+    </ol>
+  <% end %>
 <% end %>
