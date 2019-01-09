@@ -29,8 +29,10 @@ describe 'Profile Orders page' do
       fill_in :review_rating, with: 4
       click_button 'Create Review'
 
-      expect(current_path).to eq(item_path(@item_1))
+      expect(current_path).to eq(profile_order_path(@order))
 
+      click_link "#{@item_1.name}"
+      
       expect(page).to have_content(@item_1.reviews.first.title)
       expect(page).to have_content(@item_1.reviews.first.description)
       expect(page).to have_content(@item_1.reviews.first.rating)
@@ -44,6 +46,8 @@ describe 'Profile Orders page' do
       fill_in :review_description, with: 'I like this case a lot'
       fill_in :review_rating, with: 4
       click_button 'Create Review'
+
+      visit item_path(@item_1)
 
       expect(page).to have_button("disable review")
 
