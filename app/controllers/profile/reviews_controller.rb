@@ -19,13 +19,11 @@ class Profile::ReviewsController < ApplicationController
                       description: review_params[:description],
                       rating: review_params[:rating].to_i)
     end
-    @review.each do |review|
-      if review.save
-        redirect_to item_path(review.item)
-        flash[:success] = 'Your Review is Recorded'
-      else
-        render :new
-      end
+    if @review.first.save
+      redirect_to profile_order_path(@order)
+      flash[:success] = 'Your Review is Recorded'
+    else
+      render :new
     end
   end
 
