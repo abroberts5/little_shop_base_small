@@ -21,6 +21,5 @@
 <% @items.each do |item| %>
   <%= tag.div id: "item-#{item.id}" do %>
   <%= render partial: "card", locals: {item: item, img_width: 150}%>
-  <p>Average Rating: <%= item.average_rating %></p>
   <% end %>
 <% end %>
