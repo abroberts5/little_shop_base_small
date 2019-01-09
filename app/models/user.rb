@@ -55,6 +55,44 @@ class User < ApplicationRecord
       .limit(count)
   end
 
+  def self.top_merch_orders_this_month(count)
+    User.joins(items: :orders)
+      .select('users.*, count(order_items.id) as order_count')
+      .where("extract(month FROM order_items.updated_at) =? AND order_items.fulfilled =? AND orders.status !=?", Time.now.month, true, 2)
+      .group(:id)
+      .order('order_count desc')
+      .limit(count)
+  end
+
+  def self.top_merch_orders_last_month(count)
+    User.joins(items: :orders)
+      .select('users.*, count(order_items.id) as order_count')
+      .where("extract(month FROM order_items.updated_at) =? AND order_items.fulfilled =? AND orders.status !=?", Time.now.last_month.month, true, 2)
+      .group(:id)
+      .order('order_count desc')
+      .limit(count)
+  end
+
+  def self.top_merch_in_state(pass_user)
+    order_list = Order.joins(:user).where( "users.state = ? AND orders.status = ?", pass_user.state, 1 ).distinct.pluck(:id)
+    User.joins(items: :orders)
+      .select('users.*, avg(order_items.created_at - order_items.updated_at) as avg_fulfilled')
+      .where("orders.id IN (?) AND order_items.fulfilled=?", order_list, true)
+      .group(:id)
+      .order('avg_fulfilled desc')
+      .limit(5)
+  end
+
+  def self.top_merch_in_city(pass_user)
+    order_list = Order.joins(:user).where( "users.state=? AND users.city=? AND orders.status = ?", pass_user.state, pass_user.city, 1 ).distinct.pluck(:id)
+    User.joins(items: :orders)
+      .select('users.*, avg(order_items.created_at - order_items.updated_at) as avg_fulfilled')
+      .where("orders.id IN (?) AND order_items.fulfilled=?", order_list, true)
+      .group(:id)
+      .order('avg_fulfilled desc')
+      .limit(5)
+  end
+
   def my_pending_orders
     Order.joins(order_items: :item)
       .where("items.merchant_id=? AND orders.status=? AND order_items.fulfilled=?", self.id, 0, false)

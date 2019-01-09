@@ -16,6 +16,8 @@ class MerchantsController < ApplicationController
     @top_3_quantity_orders = Order.top_3_quantity_orders
     @top_10_merch_this_month = User.top_10_merch_this_month(10)
     @top_10_merch_last_month = User.top_10_merch_last_month(10)
+    @top_merch_orders_this_month = User.top_merch_orders_this_month(10)
+    @top_merch_orders_last_month = User.top_merch_orders_last_month(10)
   end
 
   def show
