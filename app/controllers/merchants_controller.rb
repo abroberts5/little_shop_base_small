@@ -18,6 +18,12 @@ class MerchantsController < ApplicationController
     @top_10_merch_last_month = User.top_10_merch_last_month(10)
     @top_merch_orders_this_month = User.top_merch_orders_this_month(10)
     @top_merch_orders_last_month = User.top_merch_orders_last_month(10)
+
+    if current_user
+      user = current_user
+      @top_merch_for_state = User.top_merch_in_state(user)
+      @top_merch_for_city = User.top_merch_in_city(user)
+    end
   end
 
   def show
